@@ -27,11 +27,11 @@ SELECT @num, @mnc, @brand, @org_code, @org_name, @region_id, @region_name, @regi
 * Ubuntu 12.04/python 2.7.3/MySQL 5.5
 ***
 # numlex
-### !!! WARNING. You should have username and password to access to [zniis](https://www.zniis.ru/bdpn/operators/request) sftp server !!!
+### !!! WARNING. You should have username and password to access [zniis](https://www.zniis.ru/bdpn/operators/request) sftp server !!!
 
 
 This daemon works on background and updates data each even hour.
-It needs python 2.6.6 at least.
+It needs at least python 2.6.6 to work.
 Probably you will need to install a couple of additional modules for python:
 mysql-connector-python
 ```sh
@@ -55,7 +55,7 @@ Firstly, place contents to the desired folder and run:
 $ ./bdpnsync.py initdb    # will create a new db and a user for it
 ```
 Settings.cfg will be created in the same folder.
-Secondly, you need to edit settings and put your zniis account data in it, than:
+Secondly, you need to update settings with your zniis account data, than run:
 ```sh
 $ ./bdpnsync.py start   # Start daemon
 $ ./bdpnsync.py stop    # Stop daemon
