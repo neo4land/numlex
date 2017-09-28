@@ -108,15 +108,15 @@ UNLOCK TABLES;
 -- Dumping routines for database 'BDPN'
 --
 DROP FUNCTION IF EXISTS `f_get_mnc`;
-CREATE DEFINER=CURRENT_USER FUNCTION `f_get_mnc`(msisdn BIGINT) RETURNS tinyint(4)
+CREATE DEFINER=CURRENT_USER FUNCTION `f_get_mnc`(msisdn BIGINT UNSIGNED) RETURNS TINYINT UNSIGNED
 BEGIN
 /*** Получение MNC кода абонента ***/
-	DECLARE res TINYINT DEFAULT 0;
+	DECLARE res TINYINT UNSIGNED DEFAULT 0;
 
 	IF (msisdn REGEXP '^(7|8)?9[0-9]{9}$') THEN
 		SET msisdn = RIGHT(msisdn,10);
 		SET res = (IFNULL((SELECT `MNC` FROM `t_port_all` WHERE `Number` = msisdn), 
-					IFNULL((SELECT `MNC` FROM `t_numbering_plan` WHERE msisdn BETWEEN `NumberFrom` AND `NumberTo`),
+							IFNULL((SELECT `MNC` FROM `t_numbering_plan` WHERE msisdn BETWEEN `NumberFrom` AND `NumberTo`),
 						  0)
 					)
 				);
@@ -124,8 +124,15 @@ BEGIN
 RETURN res;
 END;
 
+DROP FUNCTION IF EXISTS `f_get_brand_mnc`;
+CREATE DEFINER=CURRENT_USER FUNCTION `f_get_brand_mnc` (msisdn BIGINT UNSIGNED) RETURNS TINYINT UNSIGNED
+BEGIN
+/*** Получение MNC "Брэнда" абонента, если он не равен 0, иначе возвращается MNC ***/
+RETURN (SELECT IF(`MNC_brand` != 0, `MNC_brand`, `MNC`) FROM `t_mnc` WHERE `MNC` = f_get_mnc(msisdn));
+END;
+
 DROP FUNCTION IF EXISTS `f_get_owner_id`;
-CREATE DEFINER=CURRENT_USER FUNCTION `f_get_owner_id`(msisdn BIGINT) RETURNS varchar(50) CHARSET utf8
+CREATE DEFINER=CURRENT_USER FUNCTION `f_get_owner_id`(msisdn BIGINT UNSIGNED) RETURNS varchar(50) CHARSET utf8
 BEGIN
 /*** Получение OwnerId кода абонента ***/
 	DECLARE res VARCHAR(50) DEFAULT 'Wrong number!';
@@ -368,14 +375,14 @@ END;
 DROP PROCEDURE IF EXISTS `p_get_info`;
 CREATE DEFINER=CURRENT_USER PROCEDURE `p_get_info`(
 /*** Получение всей доступной в БДПН информации по номеру ***/
-	INOUT num 	BIGINT,		-- Номер абонента в е.164.
-	OUT	mnc 		TINYINT,		-- MNC сети оператора.
+	INOUT num 	BIGINT UNSIGNED,		-- Номер абонента в е.164.
+	OUT	mnc 		TINYINT UNSIGNED,		-- MNC сети оператора.
 	OUT	brand		VARCHAR(200),	-- Наименование "Брэнда".
 	OUT	org_code 	VARCHAR(50),	-- Буквенный код оператора БДПН.
 	OUT	org_name	VARCHAR(100),	-- Наименование оператора.
-	OUT	region_id	TINYINT,		-- Код региона РФ в котором зарегистрирован диапазон в который входит абонент.
+	OUT	region_id	TINYINT UNSIGNED,		-- Код региона РФ в котором зарегистрирован диапазон в который входит абонент.
 	OUT	region_name	VARCHAR(56),	-- Наименование региона РФ.
-	OUT	region_z	TINYINT,		-- Сдвиг времени региона относительно FET(UTC+3) для вычисления времени региона
+	OUT	region_z	TINYINT UNSIGNED,		-- Сдвиг времени региона относительно FET(UTC+3) для вычисления времени региона
 	OUT	port_date	DATETIME		-- Дата портирования, если актуально.
 )
 BEGIN
