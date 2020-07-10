@@ -42,7 +42,7 @@ SELECT @num, @mnc, @brand, @org_code, @org_name, @region_id, @region_name, @regi
 * Ubuntu 12.04/python 2.7.3/MySQL 5.5
 
 ### Todos
- - Port on Python 3+
+ - Port to Python 3+
  - Add more comments
 
 ***
