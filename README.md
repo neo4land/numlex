@@ -37,9 +37,13 @@ CALL p_get_info(@num, @mnc, @brand, @org_code, @org_name, @region_id, @region_na
 SELECT @num, @mnc, @brand, @org_code, @org_name, @region_id, @region_name, @region_z, @port_date;
 ```
 
-#### Tested on:
+### Tested on
 * Centos 6/python 2.6.6/MySQL 5.1
 * Ubuntu 12.04/python 2.7.3/MySQL 5.5
+
+### Todos
+ - Port on Python 3+
+ - Add more comments
 
 ***
 
