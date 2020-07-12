@@ -6,7 +6,7 @@ This is a real-world working project, successfully performing its task since 09/
 
 
 ### Tech
-* [Python] 2.6.6 to work.
+* [Python] A programming language. Version 2.7+.
 * [Paramiko] - A Python implementation of SSHv2
 * [MySQL] - Open source database
 
@@ -38,7 +38,7 @@ SELECT @num, @mnc, @brand, @org_code, @org_name, @region_id, @region_name, @regi
 ```
 
 ### Tested on
-* Centos 6/python 2.6.6/MySQL 5.1
+* Centos 7/python 2.7.14/MySQL 8.0.19
 * Ubuntu 12.04/python 2.7.3/MySQL 5.5
 
 ### Todos
@@ -71,7 +71,7 @@ SELECT @num, @mnc, @brand, @org_code, @org_name, @region_id, @region_name, @regi
 
 
 Протестировано на:
-* Centos 6/python 2.6.6/MySQL 5.1
+* Centos 7/python 2.7.14/MySQL 8.0.19
 * Ubuntu 12.04/python 2.7.3/MySQL 5.5
 
    [Paramiko]: <http://www.paramiko.org/index.html>
