@@ -1,5 +1,5 @@
 # -*- coding: utf8 -*-
-__author__ = "Stinger <neo3land@gmail.com>"
+__author__ = "Stinger <neo4land@gmail.com>"
 __license__ = "GNU Lesser General Public License (LGPL)"
 
 

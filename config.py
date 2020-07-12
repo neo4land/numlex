@@ -3,7 +3,7 @@ import ConfigParser
 import logging
 log = logging.getLogger(__name__)
 
-__author__ = "Stinger <neo3land@gmail.com>"
+__author__ = "Stinger <neo4land@gmail.com>"
 __license__ = "GNU Lesser General Public License (LGPL)"
 
 
@@ -15,7 +15,7 @@ class MyDict(dict):
         super(MyDict, self).__init__(seq, **kwargs)
 
     def __setitem__(self, key, value):
-        if key != 'client_flags':
+        if key not in ['allow_local_infile','sql_mode','client_flags']:
             self.parent.cp.set(self.name, key, value)
             self.parent.save_config()
         super(MyDict, self).__setitem__(key, value)
@@ -47,8 +47,8 @@ class Settings(object):
                 },
                 'MAIN':
                 {
-                    'local_dir': '/home/neoland/PyProjects/SftpSync/localstore/',
-                    'log_file': '/home/neoland/PyProjects/SftpSync/bdpnsync.log',
+                    'local_dir': '/tmp/',
+                    'log_file': '/var/log/bdpnsync.log',
                     'log_level': 40,
                     'sync_every_minutes': 120  # Timer step - every even hour
                 }

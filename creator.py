@@ -5,7 +5,7 @@ log = logging.getLogger(__name__)
 from dbworker import DBworker
 from getpass import getpass
 
-__author__ = "Stinger <neo3land@gmail.com>"
+__author__ = "Stinger <neo4land@gmail.com>"
 __license__ = "GNU Lesser General Public License (LGPL)"
 
 
@@ -89,8 +89,8 @@ if __name__ == "__main__":
                 config.mysql['user'] = new_usr
                 config.mysql['password'] = new_psw
                 print("User '%s' created and saved to settings file." % new_usr)
-                log.debug("User '%s' created and saved to settings file as plain text." % new_usr)
+                log.debug("User '%s' created and saved to settings file as a plain text." % new_usr)
             else:
                 print("Failed to create new user.")
     del admn
-    print("You can change settings in your settings.cfg file.\nDatabase initialisation completed.")
+    print("You can change settings in your settings.cfg file.\nDatabase initialization is completed.")

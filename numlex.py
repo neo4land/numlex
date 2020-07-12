@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 import queries
 
-__author__ = "Stinger <neo3land@gmail.com>"
+__author__ = "Stinger <neo4land@gmail.com>"
 __license__ = "GNU Lesser General Public License (LGPL)"
 
 
@@ -42,24 +42,29 @@ class NumlexBaseClass(object):
 
 
 def make_obj_list():
+    # Object for Mobile Network Operators list
     opers = NumlexBaseClass()
     opers.remote_dir = '/numlex/Operators/'
     opers.sql = queries.Operators
 
+    # Object for list of Numbering Plans
     nmbpl = NumlexBaseClass()
     nmbpl.remote_dir = '/numlex/Numbering_Plan/'
     nmbpl.sql = queries.NumberingPlan
 
+    # Object for newcomers
     prtin = NumlexBaseClass()
     prtin.remote_dir = '/numlex/Port_Increment/'
     prtin.sql = queries.PortIncrement
     prtin.newest_only = False
 
+    # Object for leavers
     ptout = NumlexBaseClass()
     ptout.remote_dir = '/numlex/Return_Increment/'
     ptout.sql = queries.ReturnIncrement
     ptout.newest_only = False
 
+    # Object for main database
     ptall = NumlexBaseClass()
     ptall.remote_dir = '/numlex/Port_All/'
     ptall.sql = queries.PortAll

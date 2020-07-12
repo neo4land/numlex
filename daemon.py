@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 class Daemon(object):
     """
     A generic daemon class.
-    by Sander Marechal with modifications by Stinger <neo3land@gmail.com>
+    by Sander Marechal with modifications by Stinger <neo4land@gmail.com>
 
     Usage: subclass the Daemon class and override the run() method
     """

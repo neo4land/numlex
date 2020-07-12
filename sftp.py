@@ -6,7 +6,7 @@ from functools import wraps
 import logging
 log = logging.getLogger(__name__)
 
-__author__ = "Stinger <neo3land@gmail.com>"
+__author__ = "Stinger <neo4land@gmail.com>"
 __license__ = "GNU Lesser General Public License (LGPL)"
 
 
@@ -122,5 +122,5 @@ class SftpChannel(object):
             return False
 
     def synchronize(self):
-        """Makes the whole file synchronisation job"""
+        """Makes the whole file synchronization job"""
         return self._download() and self._unpack()

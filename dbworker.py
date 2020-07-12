@@ -6,7 +6,7 @@ from mysql.connector import errorcode
 import logging
 log = logging.getLogger(__name__)
 
-__author__ = "Stinger <neo3land@gmail.com>"
+__author__ = "Stinger <neo4land@gmail.com>"
 __license__ = "GNU Lesser General Public License (LGPL)"
 
 
@@ -31,6 +31,7 @@ class DBworker(object):
         try:
             log.info("Attempt to connect to MySQL")
             conn_params['client_flags'] = [128]
+            conn_params['allow_local_infile'] = True
             self._mysql = mysql.connector.connect(**conn_params)
             self._cursor = self._mysql.cursor()
             log.info("MySQL connected successfuly")
@@ -106,7 +107,7 @@ class DBworker(object):
     def update(self):
         """
         This one doing main job related to update data in database.
-        Firstly, it creates temporary table and upolads csv file contens in it.
+        Firstly, it creates temporary table and uploads csv file contents in it.
         Then it makes some integrity checks and if succeeded moves data to production tables,
         otherwise, returns number of found errors.
         :param u_obj: a single object in case we need to process it.
@@ -136,7 +137,7 @@ class DBworker(object):
                                     log.debug("MySQL. Number of rows affected by statement '{0}': {1}"
                                               .format(recset.statement, recset.rowcount))
                         except mysql.connector.Error or StandardError as err:
-                            log.error("Error while updating db:%s" % err)
+                            log.error("Error while updating db from file '%s':%s" % (sfile[0], err))
                             # self._mysql.rollback()
                         finally:
                             self._mysql.commit()

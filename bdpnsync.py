@@ -15,11 +15,11 @@ from dbworker import DBworker
 from sftp import SftpChannel
 from daemon import Daemon
 
-__author__ = "Stinger <neo3land@gmail.com>"
+__author__ = "Stinger <neo4land@gmail.com>"
 __license__ = "GNU Lesser General Public License (LGPL)"
 
-if sys.version_info < (2, 6):
-    raise RuntimeError('You need Python 2.6+ for this module.')
+if sys.version_info <= (2, 7):
+    raise RuntimeError('You need Python 2.7+ for this module.')
 
 
 class BDPNdmn(Daemon):
@@ -67,7 +67,7 @@ class BDPNdmn(Daemon):
                 break
 
 if __name__ == "__main__":
-    BDPNsync = BDPNdmn('/tmp/BDPNsync.pid')
+    BDPNsync = BDPNdmn('/run/BDPNsync.pid')
     if len(sys.argv) == 2:
         if 'start' == sys.argv[1]:
             BDPNsync.start()
